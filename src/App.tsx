@@ -1,25 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
 import './App.css';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1a237e',
+    },
+    secondary: {
+      main: '#311b92',
+    },
+    background: {
+      default: '#f9f9f9',
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    h3: {
+      fontWeight: 700,
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+        },
+      },
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="App">
+        <Header />
+        <main>
+          <HomePage />
+        </main>
+      </div>
+    </ThemeProvider>
   );
 }
 
